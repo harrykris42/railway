@@ -1,0 +1,8 @@
+flask
+flask-login
+flask-wtf
+flask-bcrypt
+flask-sqlalchemy
+mysql-connector-python
+python-dotenv
+weasyprint

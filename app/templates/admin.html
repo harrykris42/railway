@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Admin Panel{% endblock %}
+{% block content %}
+<h2>Admin Panel – Manage Trains</h2>
+
+<h4 class="mt-4">Add New Train</h4>
+<form method="POST" class="row g-2">
+  <div class="col-md-2"><input type="text" name="train_name" placeholder="Train Name" class="form-control" required></div>
+  <div class="col-md-2"><input type="text" name="from_station" placeholder="From" class="form-control" required></div>
+  <div class="col-md-2"><input type="text" name="to_station" placeholder="To" class="form-control" required></div>
+  <div class="col-md-2"><input type="number" name="total_seats" placeholder="Total Seats" class="form-control" required></div>
+  <div class="col-md-2"><input type="date" name="date" class="form-control" required></div>
+  <div class="col-md-2"><button class="btn btn-primary w-100">Add Train</button></div>
+</form>
+
+<hr>
+
+<h4 class="mt-4">All Trains</h4>
+{% for train in trains %}
+<div class="card mb-3">
+  <div class="card-body">
+    <form method="POST" action="{{ url_for('edit_train', train_id=train.id) }}" class="row g-2 align-items-center">
+      <div class="col-md-2"><input type="text" name="train_name" value="{{ train.train_name }}" class="form-control" required></div>
+      <div class="col-md-2"><input type="text" name="from_station" value="{{ train.from_station }}" class="form-control" required></div>
+      <div class="col-md-2"><input type="text" name="to_station" value="{{ train.to_station }}" class="form-control" required></div>
+      <div class="col-md-2"><input type="number" name="total_seats" value="{{ train.total_seats }}" class="form-control" required></div>
+      <div class="col-md-2"><input type="date" name="date" value="{{ train.date }}" class="form-control" required></div>
+      <div class="col-md-2 d-flex">
+        <button class="btn btn-success btn-sm me-1">Update</button>
+    </form>
+    <form method="POST" action="{{ url_for('delete_train', train_id=train.id) }}">
+        <button class="btn btn-danger btn-sm">Delete</button>
+    </form>
+      </div>
+  </div>
+</div>
+{% else %}
+<p>No trains found.</p>
+{% endfor %}
+
+<a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-4">Back to Dashboard</a>
+{% endblock %}

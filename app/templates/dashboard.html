@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<h2>Hello, {{ current_user.name }} 👋</h2>
+
+{% if current_user.is_admin %}
+  <a href="{{ url_for('admin_panel') }}" class="btn btn-outline-warning mb-3">Admin Panel</a>
+{% endif %}
+
+<h4 class="mt-4">Search Trains</h4>
+<form method="get" class="row g-2 mb-4">
+  <div class="col-md-3">
+    <input type="text" name="from_station" placeholder="From" value="{{ request.args.get('from_station', '') }}" class="form-control">
+  </div>
+  <div class="col-md-3">
+    <input type="text" name="to_station" placeholder="To" value="{{ request.args.get('to_station', '') }}" class="form-control">
+  </div>
+  <div class="col-md-3">
+    <input type="date" name="date" value="{{ request.args.get('date', '') }}" class="form-control">
+  </div>
+  <div class="col-md-3 d-flex">
+    <button class="btn btn-primary me-2">Filter</button>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Reset</a>
+  </div>
+</form>
+
+<h4>Available Trains</h4>
+{% for train in trains %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">{{ train.train_name }} ({{ train.date }})</h5>
+    <p class="card-text">{{ train.from_station }} → {{ train.to_station }} | Seats Left: {{ train.available_seats }}</p>
+    <form method="POST" action="{{ url_for('book', train_id=train.id) }}" class="d-flex">
+      <input type="number" name="seats" min="1" max="{{ train.available_seats }}" required class="form-control me-2" style="max-width: 120px;">
+      <button type="submit" class="btn btn-success btn-sm">Book</button>
+    </form>
+  </div>
+</div>
+{% else %}
+<p>No trains available.</p>
+{% endfor %}
+
+<hr>
+
+<h4 class="mt-4">Your Bookings</h4>
+{% for ticket in bookings %}
+<div class="card mb-2">
+  <div class="card-body">
+    <strong>{{ ticket.ticket_id }}</strong> — {{ ticket.seats_booked }} seat(s) on {{ ticket.travel_date }}
+    ({{ ticket.train.from_station }} → {{ ticket.train.to_station }})
+    <form method="POST" action="{{ url_for('cancel_booking', booking_id=ticket.id) }}" style="display:inline;">
+      <button type="submit" class="btn btn-outline-danger btn-sm float-end">Cancel</button>
+    </form>
+  </div>
+</div>
+{% else %}
+<p>You have no bookings yet.</p>
+{% endfor %}
+
+<a href="{{ url_for('logout') }}" class="btn btn-danger mt-4">Logout</a>
+
+{% endblock %}
