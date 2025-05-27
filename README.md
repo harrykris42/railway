@@ -24,5 +24,7 @@ Edit `.env.example`, replace `MYSQL_PASSWORD=nikke` with your password, just pre
 ## Note
 
 admin credentials for login:
+
 Name: admin
+
 Password: admin
