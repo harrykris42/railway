@@ -10,6 +10,9 @@ import string
 def register_routes(app):
     def generate_ticket_id():
         return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+    @app.route('/')
+    def index():
+        return render_template('base.html')
 
     # REGISTER
     @app.route('/register', methods=['GET', 'POST'])

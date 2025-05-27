@@ -39,10 +39,6 @@ def create_app():
     from app.routes import register_routes
     register_routes(app)
 
-    # Optional index route
-    @app.route('/')
-    def index():
-        return '✅ Railway Booking System is Online.'
     with app.app_context():
         from app.models import Train
         from datetime import datetime
