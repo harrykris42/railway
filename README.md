@@ -1,4 +1,4 @@
-# Railway Ticket Booking System
+# Railway Ticket Booking System For a Friend
 
 ## Setup
 
@@ -15,8 +15,14 @@ chmod +x install.sh
 
 ## ⚠️ Important: Edit `.env` File
 
-When prompted during installation, open the generated `.env` file and **enter your MySQL credentials**:
+When prompted during installation, open the generated `.env` file and **enter your MySQL password**:
 
-OR
+**OR**
 
-Edit .env.example, replace MYSQL_PASSWORD=nikke with your password, enter away when prompted during installation
+Edit `.env.example`, replace `MYSQL_PASSWORD=nikke` with your password, just press enter when prompted during installation
+
+## Note
+
+admin credentials for login:
+Name: admin
+Password: admin

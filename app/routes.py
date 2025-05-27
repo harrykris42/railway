@@ -12,7 +12,7 @@ def register_routes(app):
         return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
     @app.route('/')
     def index():
-        return render_template('base.html')
+        return render_template('home.html')
 
     # REGISTER
     @app.route('/register', methods=['GET', 'POST'])

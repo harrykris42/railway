@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 # Load environment variables from .env file
 load_dotenv()
@@ -28,9 +29,9 @@ def create_app():
     login_manager.login_view = 'login'
 
     # Import models
-    from app.models import User
+    from app.models import User, Train
 
-    # User loader for Flask-Login
+    # User loader
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
@@ -39,9 +40,8 @@ def create_app():
     from app.routes import register_routes
     register_routes(app)
 
+    # Add default trains if none exist
     with app.app_context():
-        from app.models import Train
-        from datetime import datetime
         if not Train.query.first():
             trains = [
                 Train(train_name="Express 101", from_station="Delhi", to_station="Mumbai", total_seats=100, available_seats=100, date=datetime(2025, 6, 1)),

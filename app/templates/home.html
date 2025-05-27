@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Railway System{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1 class="mb-4">🚆 Welcome to the Railway Booking System</h1>
+    {% if current_user.is_authenticated %}
+        <p class="lead">Welcome back, {{ current_user.name }}!</p>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary mt-3">Go to Dashboard</a>
+    {% else %}
+        <p class="lead">Book your tickets online and manage your bookings with ease.</p>
+        <a href="{{ url_for('login') }}" class="btn btn-success mt-3 me-2">Login</a>
+        <a href="{{ url_for('register') }}" class="btn btn-outline-secondary mt-3">Register</a>
+    {% endif %}
+</div>
+{% endblock %}
