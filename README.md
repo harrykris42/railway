@@ -19,4 +19,4 @@ When prompted during installation, open the generated `.env` file and **enter yo
 
 OR
 
-Edit .env.example, replace MYSQL_PASSWORD=nikke with your password
+Edit .env.example, replace MYSQL_PASSWORD=nikke with your password, enter away when prompted during installation
