@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Environment variables
+.env
+.env.*
+
+# SQLite (if used during development)
+*.sqlite3
+
+# MySQL dump files (optional)
+*.sql
+
+# Flask cache / instance folders
+instance/
+*.log
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Python egg info
+*.egg-info/
+.eggs/
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Build and distribution
+build/
+dist/
+*.egg
+pip-wheel-metadata/
