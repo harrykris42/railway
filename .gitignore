@@ -15,9 +15,6 @@ env/
 # SQLite (if used during development)
 *.sqlite3
 
-# MySQL dump files (optional)
-*.sql
-
 # Flask cache / instance folders
 instance/
 *.log
